@@ -1,10 +1,13 @@
 import express from "express";
 import pkg from "pg";
-import { postPW, postHost, postDB, postUser, postPort } from "./config.js";
-const { Pool } = pkg;
+import { postPW, postHost, postDB, postUser, postPort, secretToken } from "./config.js";
 
+
+
+const { Pool } = pkg;
 const app = express();
-const port = 3000;
+// Need to use this process.env.PORT for Render to work.
+const port = process.env.PORT || 3000;
 
 const pool = new Pool({
   user: postUser,
@@ -17,21 +20,9 @@ const pool = new Pool({
   },
 });
 
-// Returns all tables in the public schema.
-app.get("/tables", async (req, res) => {
-  try {
-    const result = await pool.query(
-      "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"
-    );
-    res.json(result.rows);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error querying database");
-  }
-});
-
+// TODO: Test and implement endpoint in frontend!
 // Returns all settings
-app.get("/settings", async (req, res) => {
+app.get(`/${secretToken}/settings`, async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM "Settings"');
     res.json(result.rows);
@@ -41,8 +32,9 @@ app.get("/settings", async (req, res) => {
   }
 });
 
+// TODO: Test and implement endpoint in frontend!
 // Returns all featured items.
-app.get("/featured", async (req, res) => {
+app.get(`/${secretToken}/featured`, async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM "Featured"');
         res.json(result.rows);
@@ -53,7 +45,8 @@ app.get("/featured", async (req, res) => {
     });
 
 // Returns all users.
-app.get("/users", async (req, res) => {
+// TODO: Test and implement endpoint in frontend!
+app.get(`/${secretToken}/users`, async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM "Users"');
         res.json(result.rows);
@@ -64,7 +57,7 @@ app.get("/users", async (req, res) => {
     });
 
 // Returns all publics users
-app.get("/public-users", async (req, res) => {
+app.get(`/${secretToken}/public-users`, async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM "Settings" WHERE "isPublic" = true');
         res.json(result.rows);
@@ -75,7 +68,8 @@ app.get("/public-users", async (req, res) => {
     });
 
 // Returns true or false if user exists.
-app.get("/users/:userId", async (req, res) => {
+// TODO: Test and implement endpoint in frontend!
+app.get(`/${secretToken}/users/:userId`, async (req, res) => {
   const userId = req.params.userId;
   try {
     const result = await pool.query('SELECT * FROM "Users" WHERE "userId" = $1', [
