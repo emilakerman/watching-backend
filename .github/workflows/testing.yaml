@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Create config.js
         run: |
           echo "module.exports = {" > ./config.js
@@ -25,15 +25,15 @@ jobs:
           echo "  postPort: '${{ secrets.postPort }}'," >> ./config.js
           echo "  secretToken: '${{ secrets.secretToken }}'" >> ./config.js
           echo "};" >> ./config.js
-      
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      
+
       - name: npm install
         run: npm ci
-      
+
       - name: Run tests
         env:
           postUser: ${{ secrets.postUser }}

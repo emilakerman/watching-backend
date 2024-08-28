@@ -20,4 +20,3 @@ jobs:
         run: npm ci
       - name: formatting
         run: npx prettier --write .
-
