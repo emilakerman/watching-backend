@@ -1,6 +1,8 @@
 import request from 'supertest';
 import { app, server } from './index.js';
-import { secretToken } from './config.js';
+import { secretToken as secretTokenConfig } from './config.js';
+
+const secretToken = process.env.secretToken || secretTokenConfig;
 
 test('returns a list of public users', async () => {
   const response = await request(app).get(`/${secretToken}/public-users`);

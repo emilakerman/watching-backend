@@ -19,4 +19,11 @@ jobs:
       - name: npm install
         run: npm ci
       - name: tests
+        env:
+          postUser: ${{ secrets.postUser }}
+          postDB: ${{ secrets.postDB }}
+          postHost: ${{ secrets.postHost }}
+          postPW: ${{ secrets.postPW }}
+          postPort: ${{ secrets.postPort }}
+          secretToken: ${{ secrets.secretToken }}
         run: npm test
