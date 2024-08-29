@@ -21,7 +21,7 @@ const server = app.listen(process.env.PORT || 3000, () => {
 const pool = new Pool({
   user: process.env.POSTUSER || postUser,
   host: process.env.POSTHOST || postHost,
-  database: process.env.POSTDN || postDB,
+  database: process.env.POSTDB || postDB,
   password: process.env.POSTPW || postPW,
   port: process.env.POSTPORT || postPort,
   ssl: {
