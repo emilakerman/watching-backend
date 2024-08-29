@@ -18,12 +18,12 @@ jobs:
       - name: Create config.js
         run: |
           echo "module.exports = {" > ./config.js
-          echo "  postUser: '${{ secrets.postUser }}'," >> ./config.js
-          echo "  postDB: '${{ secrets.postDB }}'," >> ./config.js
-          echo "  postHost: '${{ secrets.postHost }}'," >> ./config.js
-          echo "  postPW: '${{ secrets.postPW }}'," >> ./config.js
-          echo "  postPort: '${{ secrets.postPort }}'," >> ./config.js
-          echo "  secretToken: '${{ secrets.secretToken }}'" >> ./config.js
+          echo "  postUser: '${{ secrets.POSTUSER }}'," >> ./config.js
+          echo "  postDB: '${{ secrets.POSTDB }}'," >> ./config.js
+          echo "  postHost: '${{ secrets.POSTHOST }}'," >> ./config.js
+          echo "  postPW: '${{ secrets.POSTPW }}'," >> ./config.js
+          echo "  postPort: '${{ secrets.POSTPORT }}'," >> ./config.js
+          echo "  secretToken: '${{ secrets.SECRETTOKEN }}'" >> ./config.js
           echo "};" >> ./config.js
 
       - name: Use Node.js ${{ matrix.node-version }}
