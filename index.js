@@ -19,11 +19,11 @@ const server = app.listen(process.env.PORT || 3000, () => {
 });
 
 const pool = new Pool({
-  user: process.env.postUser || postUser,
-  host: process.env.postHost || postHost,
-  database: process.env.postDB || postDB,
-  password: process.env.postPW || postPW,
-  port: process.env.postPort || postPort,
+  user: process.env.POSTUSER || postUser,
+  host: process.env.POSTHOST || postHost,
+  database: process.env.POSTDN || postDB,
+  password: process.env.POSTPW || postPW,
+  port: process.env.POSTPORT || postPort,
   ssl: {
     rejectUnauthorized: false,
   },

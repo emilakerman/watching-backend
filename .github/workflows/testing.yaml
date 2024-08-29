@@ -36,10 +36,10 @@ jobs:
 
       - name: Run tests
         env:
-          postUser: ${{ secrets.postUser }}
-          postDB: ${{ secrets.postDB }}
-          postHost: ${{ secrets.postHost }}
-          postPW: ${{ secrets.postPW }}
-          postPort: ${{ secrets.postPort }}
-          secretToken: ${{ secrets.secretToken }}
+          postUser: ${{ secrets.POSTUSER }}
+          postDB: ${{ secrets.POSTDB }}
+          postHost: ${{ secrets.POSTHOST }}
+          postPW: ${{ secrets.POSTPW }}
+          postPort: ${{ secrets.POSTPORT }}
+          secretToken: ${{ secrets.SECRETTOKEN }}
         run: npm test
